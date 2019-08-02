@@ -5,4 +5,5 @@ module Numcry
 
   include Accumulate
   include Stats
+  include Correlate
 end
