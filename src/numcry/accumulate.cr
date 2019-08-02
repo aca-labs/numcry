@@ -29,13 +29,13 @@ module Numcry::Accumulate
   # accumulate((1..3), 10) { |a, b| a + b } # => [11, 13, 16]
   # ```
   def accumulate(collection : Enumerable(T), initial : U, &block : U, T -> U) forall T, U
-    Array(U).build(collection.size) do |buffer|
-      accum = initial
-      collection.each_with_index do |x, i|
-        buffer[i] = accum = yield accum, x
-      end
-      collection.size
+    r = Array(U).new(collection.size)
+    accum = initial
+    collection.each do |x|
+      accum = yield accum, x
+      r << accum
     end
+    r
   end
 end
 
