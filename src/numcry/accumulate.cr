@@ -1,33 +1,24 @@
 module Numcry::Accumulate
   extend self
 
-  # Returns as `Array` of cumulative values, starting from zero.
+  # Return an `Array` containing the cumulative sum of elements from
+  # *collection*.
   #
   # ```
-  # accumulate((1..3)) # => [1, 3, 6]
+  # cumsum((1..3)) # => [1, 3, 6]
   # ```
-  def accumulate(collection : Enumerable(T)) forall T
-    accumulate collection, Reflect(T).first.zero
+  def cumsum(collection : Enumerable(T)) forall T
+    accumulate(collection, Reflect(T).first.zero) { |a, b| a + b }
   end
 
-  # Returns as `Array` of cumulative values for the *collection*, starting
-  # from *initial*.
+  # Return an `Array` containing the cumulative product of elements from
+  # *collection*.
   #
   # ```
-  # accumulate((1..3), 10) # => [11, 13, 16]
+  # cumprod((1..3)) # => [1, 2, 6]
   # ```
-  def accumulate(collection, initial)
-    accumulate(collection, initial) { |a, b| a + b }
-  end
-
-  # Returns an `Array` of cumulative values of applying *block* to each element
-  # in the collection and the previous accumulated value, starting with zero.
-  #
-  # ```
-  # accumulate((1..3)) { |a, b| a - b } # => [-1, -3, -6]
-  # ```
-  def accumulate(collection : Enumerable(T), &block) forall T
-    accumulate(collection, Reflect(T).first.zero) { |a, b| yield a, b }
+  def cumprod(collection : Enumerable(T)) forall T
+    accumulate(collection, Reflect(T).first.zero + 1) { |a, b| a * b }
   end
 
   # Accumulate the results of applying the passed block to each element in
@@ -48,16 +39,12 @@ module Numcry::Accumulate
 end
 
 module Enumerable(T)
-  def accumulate
-    Numcry::Accumulate.accumulate(self)
+  def cumsum
+    Numcry::Accumulate.cumsum(self)
   end
 
-  def accumulate(initial)
-    Numcry::Accumulate.accumulate(self, initial)
-  end
-
-  def accumulate(&block : T, T -> T)
-    Numcry::Accumulate.accumulate(self, &block)
+  def cumprod
+    Numcry::Accumulate.cumprod(self)
   end
 
   def accumulate(initial : U, &block : U, T -> U) forall U
