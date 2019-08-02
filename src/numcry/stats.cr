@@ -1,6 +1,6 @@
 require "math"
 
-# Extensions for the `Enumerable` module to support common stats methods.
+# Base stats methods.
 module Numcry::Stats
   extend self
 

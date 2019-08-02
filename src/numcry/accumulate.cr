@@ -1,3 +1,4 @@
+# Tools for producing cumulative values across collections.
 module Numcry::Accumulate
   extend self
 
