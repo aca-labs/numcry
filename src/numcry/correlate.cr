@@ -14,7 +14,7 @@ module Numcry::Correlate
 
   # Compute the Pearson correlation coefficient for *a* and *b*.
   def corrcoef(a : Enumerable, b : Enumerable, ddof = 0.0)
-    cov(a, b, ddof) / (std(a, ddof) * std(b, ddof))
+    cov(a, b, ddof) / (Stats.std(a, ddof) * Stats.std(b, ddof))
   end
 end
 
