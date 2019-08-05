@@ -23,3 +23,9 @@ describe Enumerable do
   it { [1, 2, 3, 4, 5, 6].cumsum.should eq([1, 3, 6, 10, 15, 21]) }
   it { [1, 2, 3, 4, 5, 6].cumprod.should eq([1, 2, 6, 24, 120, 720]) }
 end
+
+describe Iterator do
+  it { (1..3).each.accumulate(1.5) { |a, b| a + b }.should eq([2.5, 4.5, 7.5]) }
+  it { [1, 2, 3, 4, 5, 6].each.cumsum.should eq([1, 3, 6, 10, 15, 21]) }
+  it { [1, 2, 3, 4, 5, 6].each.cumprod.should eq([1, 2, 6, 24, 120, 720]) }
+end

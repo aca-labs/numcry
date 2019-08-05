@@ -8,7 +8,7 @@ module Numcry::Accumulate
   # ```
   # cumsum((1..3)) # => [1, 3, 6]
   # ```
-  def cumsum(collection : Enumerable(T)) forall T
+  def cumsum(collection : Enumerable(T) | Iterator(T)) forall T
     accumulate(collection, Reflect(T).first.zero) { |a, b| a + b }
   end
 
@@ -18,7 +18,7 @@ module Numcry::Accumulate
   # ```
   # cumprod((1..3)) # => [1, 2, 6]
   # ```
-  def cumprod(collection : Enumerable(T)) forall T
+  def cumprod(collection : Enumerable(T) | Iterator(T)) forall T
     accumulate(collection, Reflect(T).first.zero + 1) { |a, b| a * b }
   end
 
@@ -28,6 +28,15 @@ module Numcry::Accumulate
   # ```
   # accumulate((1..3), 10) { |a, b| a + b } # => [11, 13, 16]
   # ```
+  def accumulate(collection : Iterator(T), initial : U, &block : U, T -> U) forall T, U
+    accum = initial
+    collection.reduce([] of U) do |arr, x|
+      accum = yield accum, x
+      arr << accum
+    end
+  end
+
+  # ditto
   def accumulate(collection : Enumerable(T), initial : U, &block : U, T -> U) forall T, U
     Array(U).build(collection.size) do |buffer|
       accum = initial
@@ -39,7 +48,7 @@ module Numcry::Accumulate
   end
 end
 
-module Enumerable(T)
+module Numcry::Accumulate::Ext(T)
   def cumsum
     Numcry::Accumulate.cumsum(self)
   end
@@ -51,4 +60,12 @@ module Enumerable(T)
   def accumulate(initial : U, &block : U, T -> U) forall U
     Numcry::Accumulate.accumulate(self, initial, &block)
   end
+end
+
+module Enumerable(T)
+  include Numcry::Accumulate::Ext(T)
+end
+
+module Iterator(T)
+  include Numcry::Accumulate::Ext(T)
 end
