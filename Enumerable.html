@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 0.30.0">
+
+
+<link href="css/style.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="js/doc.js"></script>
+<script type="text/javascript">
+  CrystalDoc.base_path = "";
+</script>
+
+  <meta id="repository-name" content="github.com/aca-labs/numcry">
+  <title>Enumerable(T) - github.com/aca-labs/numcry</title>
+</head>
+<body>
+
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="repository-links">
+      <a href="index.html">README</a>
+    </div>
+  </div>
+
+  <div class="search-results" class="hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class=" current" data-id="github.com/aca-labs/numcry/Enumerable" data-name="enumerable(t)">
+      <a href="Enumerable.html">Enumerable</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/aca-labs/numcry/Iterator" data-name="iterator(t)">
+      <a href="Iterator.html">Iterator</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/aca-labs/numcry/Numcry" data-name="numcry">
+      <a href="Numcry.html">Numcry</a>
+      
+        <ul>
+  
+  <li class="parent " data-id="github.com/aca-labs/numcry/Numcry/Accumulate" data-name="numcry::accumulate">
+      <a href="Numcry/Accumulate.html">Accumulate</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/aca-labs/numcry/Numcry/Accumulate/Ext" data-name="numcry::accumulate::ext(t)">
+      <a href="Numcry/Accumulate/Ext.html">Ext</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="github.com/aca-labs/numcry/Numcry/Correlate" data-name="numcry::correlate">
+      <a href="Numcry/Correlate.html">Correlate</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/aca-labs/numcry/Numcry/Stats" data-name="numcry::stats">
+      <a href="Numcry/Stats.html">Stats</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">module</span> Enumerable(T)
+
+</h1>
+
+
+
+
+
+  <h2>Overview</h2>
+
+  <p>The <code><a href="Enumerable.html">Enumerable</a></code> mixin provides collection classes with several traversal, searching,
+filtering and querying methods.</p>
+
+<p>Including types must provide an <code>each</code> method, which yields successive members
+of the collection.</p>
+
+<p>For example:</p>
+
+<pre><code><span class="k">class</span> <span class="t">Three</span>
+  <span class="k">include</span> <span class="t">Enumerable</span>(<span class="t">Int32</span>)
+
+  <span class="k">def</span> <span class="m">each</span>
+    <span class="k">yield</span> <span class="n">1</span>
+    <span class="k">yield</span> <span class="n">2</span>
+    <span class="k">yield</span> <span class="n">3</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+three <span class="o">=</span> <span class="t">Three</span>.<span class="k">new</span>
+three.to_a                <span class="c"># =&gt; [1, 2, 3]</span>
+three.<span class="k">select</span> <span class="o">&amp;</span>.odd?       <span class="c"># =&gt; [1, 3]</span>
+three.all? { <span class="o">|</span>x<span class="o">|</span> x <span class="o">&lt;</span> <span class="n">10</span> } <span class="c"># =&gt; true</span></code></pre>
+
+<p>Note that most search and filter methods traverse an Enumerable eagerly,
+producing an <code>Array</code> as the result. For a lazy alternative refer to
+the <code><a href="Iterator.html">Iterator</a></code> and <code>Iterable</code> modules.</p>
+
+
+
+
+
+  <h2>Included Modules</h2>
+  <ul class="other-types-list">
+  
+    <li class="other-type"><a href="Numcry/Accumulate/Ext.html">Numcry::Accumulate::Ext(T)</a></li>
+  
+  </ul>
+
+
+
+
+
+
+
+  <h2>Direct including types</h2>
+  <ul class="other-types-list">
+  
+    <li class="other-type"><a href="Iterator.html">Iterator(T)</a></li>
+  
+  </ul>
+
+
+
+
+  <h2>Defined in:</h2>
+  
+    
+      <a href="https://github.com/aca-labs/numcry/blob/338758a71f7b15a726a063d8ce1bf443719cbe3c/src/numcry/accumulate.cr#L65" target="_blank">
+        numcry/accumulate.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/aca-labs/numcry/blob/338758a71f7b15a726a063d8ce1bf443719cbe3c/src/numcry/stats.cr#L41" target="_blank">
+        numcry/stats.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/aca-labs/numcry/blob/338758a71f7b15a726a063d8ce1bf443719cbe3c/src/numcry/correlate.cr#L21" target="_blank">
+        numcry/correlate.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+
+
+
+
+  <h2>Instance Method Summary</h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#corrcoef(other:Enumerable,ddof=0.0)-instance-method" class="signature"><strong>#corrcoef</strong>(other : Enumerable, ddof = <span class="n">0.0</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#cov(other:Enumerable,ddof=0.0)-instance-method" class="signature"><strong>#cov</strong>(other : Enumerable, ddof = <span class="n">0.0</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#mean-instance-method" class="signature"><strong>#mean</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#std(ddof=0.0)-instance-method" class="signature"><strong>#std</strong>(ddof = <span class="n">0.0</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#var(ddof=0.0)-instance-method" class="signature"><strong>#var</strong>(ddof = <span class="n">0.0</span>)</a>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+<div class="methods-inherited">
+  
+    
+
+  <h3>Instance methods inherited from module <code><a href="Numcry/Accumulate/Ext.html">Numcry::Accumulate::Ext(T)</a></code></h3>
+  
+  
+    <a href="Numcry/Accumulate/Ext.html#accumulate(initial:U,&block:U,T-%3EU)forallU-instance-method" class="tooltip">
+      <span>accumulate(initial : U, &block : U, T -> U) forall U</span>
+    accumulate</a>, 
+    
+  
+    <a href="Numcry/Accumulate/Ext.html#cumprod-instance-method" class="tooltip">
+      <span>cumprod</span>
+    cumprod</a>, 
+    
+  
+    <a href="Numcry/Accumulate/Ext.html#cumsum-instance-method" class="tooltip">
+      <span>cumsum</span>
+    cumsum</a>
+    
+  
+
+
+    
+
+
+    
+
+
+  
+</div>
+
+
+
+
+
+
+  <h2>Instance Method Detail</h2>
+  
+    <div class="entry-detail" id="corrcoef(other:Enumerable,ddof=0.0)-instance-method">
+      <div class="signature">
+        
+        def <strong>corrcoef</strong>(other : <a href="Enumerable.html">Enumerable</a>, ddof = <span class="n">0.0</span>)
+
+        <a class="method-permalink" href="#corrcoef(other:Enumerable,ddof=0.0)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/aca-labs/numcry/blob/338758a71f7b15a726a063d8ce1bf443719cbe3c/src/numcry/correlate.cr#L26" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="cov(other:Enumerable,ddof=0.0)-instance-method">
+      <div class="signature">
+        
+        def <strong>cov</strong>(other : <a href="Enumerable.html">Enumerable</a>, ddof = <span class="n">0.0</span>)
+
+        <a class="method-permalink" href="#cov(other:Enumerable,ddof=0.0)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/aca-labs/numcry/blob/338758a71f7b15a726a063d8ce1bf443719cbe3c/src/numcry/correlate.cr#L22" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="mean-instance-method">
+      <div class="signature">
+        
+        def <strong>mean</strong>
+
+        <a class="method-permalink" href="#mean-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/aca-labs/numcry/blob/338758a71f7b15a726a063d8ce1bf443719cbe3c/src/numcry/stats.cr#L42" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="std(ddof=0.0)-instance-method">
+      <div class="signature">
+        
+        def <strong>std</strong>(ddof = <span class="n">0.0</span>)
+
+        <a class="method-permalink" href="#std(ddof=0.0)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/aca-labs/numcry/blob/338758a71f7b15a726a063d8ce1bf443719cbe3c/src/numcry/stats.cr#L50" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="var(ddof=0.0)-instance-method">
+      <div class="signature">
+        
+        def <strong>var</strong>(ddof = <span class="n">0.0</span>)
+
+        <a class="method-permalink" href="#var(ddof=0.0)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/aca-labs/numcry/blob/338758a71f7b15a726a063d8ce1bf443719cbe3c/src/numcry/stats.cr#L46" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+</div>
+
+</body>
+</html>
