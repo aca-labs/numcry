@@ -1,12 +1,10 @@
 name: numcry
-version: 1.0.0
+version: 1.0.1
 
 authors:
   - Kim Burgess <kim@acaprojects.com>
 
 description: |
   Like NumPy, but slower!
-
-crystal: 0.29.0
 
 license: MIT
