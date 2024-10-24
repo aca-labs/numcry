@@ -8,8 +8,8 @@ module Numcry::Correlate
   # Compute the covariance between two collections *a* and *b*.
   def cov(a : Enumerable(T), b : Enumerable(U), ddof = 0.0) forall T, U
     raise ArgumentError.new("sizes must be uniform") if a.size != b.size
-    e = a.mean * b.mean
-    a.zip(b).sum { |x, y| x * y - e } / (a.size - ddof)
+    e = a.mean.to_i64 * b.mean.to_i64
+    a.zip(b).sum { |x, y| x.to_i64 * y.to_i64 - e } / (a.size - ddof)
   end
 
   # Compute the Pearson correlation coefficient for *a* and *b*.
